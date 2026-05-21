@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEI UNIMINUTO — Para Aliados y Comunidad</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #0F6E56;
+    --verde-oscuro: #085041;
+    --verde-claro: #E1F5EE;
+    --verde-medio: #1D9E75;
+    --naranja: #E8590C;
+    --naranja-claro: #FFF4EF;
+    --azul: #0F2D4A;
+    --amarillo: #F59E0B;
+    --amarillo-claro: #FAEEDA;
+    --gris: #F8F7F4;
+    --gris-borde: #E5E3DE;
+    --texto: #1A1A1A;
+    --texto-suave: #5A5A5A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    background: #fff;
+    color: var(--texto);
+  }
+
+  /* PORTADA VERDE */
+  .portada {
+    background: var(--verde-oscuro);
+    min-height: 500px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (max-width: 700px) {
+    .portada { grid-template-columns: 1fr; }
+    .portada-derecha { display: none; }
+  }
+
+  .portada::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.12);
+    top: -200px; right: 200px;
+    pointer-events: none;
+  }
+
+  .portada-izq {
+    padding: 3.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tag-ext {
+    display: inline-block;
+    background: rgba(245,158,11,0.2);
+    color: #F59E0B;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(245,158,11,0.3);
+  }
+
+  .portada-izq h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.9rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 1.2rem;
+  }
+
+  .portada-izq h1 em {
+    font-style: italic;
+    color: #5DCAA5;
+  }
+
+  .portada-izq p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 2rem;
+  }
+
+  .portada-derecha {
+    background: var(--verde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .misión-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 340px;
+  }
+
+  .misión-box .label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #5DCAA5;
+    margin-bottom: 1rem;
+  }
+
+  .misión-box p {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+  }
+
+  .misión-box .firma {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 1rem;
+    font-style: normal;
+  }
+
+  /* PROPUESTA DE VALOR */
+  .propuesta {
+    background: var(--verde-claro);
+    padding: 3rem 2rem;
+  }
+
+  .propuesta-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .label-seccion {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 0.6rem;
+  }
+
+  .propuesta h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    margin-bottom: 0.8rem;
+  }
+
+  .propuesta .intro {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+    max-width: 640px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .valor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .valor-item {
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid var(--verde);
+    transition: transform 0.2s;
+  }
+
+  .valor-item:hover { transform: translateY(-3px); }
+
+  .valor-item h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .valor-item p {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* COMO ALIARSE */
+  .como-aliarse {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .como-aliarse h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 0.6rem;
+  }
+
+  .como-aliarse .intro {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+    max-width: 640px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  /* TABS ALIADOS */
+  .alias-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .alias-tab {
+    background: var(--gris);
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 999px;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--texto-suave);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .alias-tab:hover, .alias-tab.activo {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: #fff;
+  }
+
+  .alias-panel {
+    display: none;
+  }
+
+  .alias-panel.activo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    animation: aparecer 0.3s ease;
+  }
+
+  @keyframes aparecer {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  .alias-card {
+    background: var(--gris);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid var(--gris-borde);
+  }
+
+  .alias-card .num {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--verde);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .alias-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 0.6rem;
+  }
+
+  .alias-card p {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* MODELOS DE COLABORACIÓN */
+  .modelos {
+    background: var(--azul);
+    padding: 3rem 2rem;
+  }
+
+  .modelos-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .modelos h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+
+  .modelos .intro {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    line-height: 1.75;
+  }
+
+  .modelos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .modelo-fila {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    background: rgba(255,255,255,0.04);
+    transition: background 0.2s;
+  }
+
+  @media (max-width: 600px) { .modelo-fila { grid-template-columns: 1fr; } }
+
+  .modelo-fila:hover { background: rgba(255,255,255,0.08); }
+
+  .modelo-fila + .modelo-fila {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .modelo-tipo {
+    padding: 1.2rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .modelo-tipo .mtype {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5DCAA5;
+    margin-bottom: 0.3rem;
+  }
+
+  .modelo-tipo h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .modelo-desc {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+  }
+
+  /* FORMULARIO EXTERNO */
+  .form-externo-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .form-externo-wrap h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    margin-bottom: 0.6rem;
+  }
+
+  .form-externo-wrap .intro {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+    max-width: 620px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .form-ext {
+    background: var(--gris);
+    border: 1px solid var(--gris-borde);
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  .form-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 700px) { .form-3col { grid-template-columns: 1fr; } }
+
+  .form-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 600px) { .form-2col { grid-template-columns: 1fr; } }
+
+  .fg {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .fg label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .fg input,
+  .fg select,
+  .fg textarea {
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--texto);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .fg input:focus,
+  .fg select:focus,
+  .fg textarea:focus { border-color: var(--verde); }
+
+  .fg textarea { resize: vertical; min-height: 100px; }
+
+  /* INTERÉS MÚLTIPLE */
+  .intereses {
+    margin-bottom: 1rem;
+  }
+
+  .intereses label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .intereses-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .interes-chip {
+    background: #fff;
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--texto-suave);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .interes-chip:hover { border-color: var(--verde); color: var(--verde); }
+  .interes-chip.sel { background: var(--verde); border-color: var(--verde); color: #fff; }
+
+  .btn-aliado {
+    background: var(--verde);
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.85rem 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-aliado:hover { background: var(--verde-oscuro); }
+
+  .exito-ext {
+    display: none;
+    background: var(--verde-claro);
+    border: 1px solid var(--verde);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    color: var(--verde-oscuro);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--verde-oscuro);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .footer p { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+  .footer strong { color: #5DCAA5; }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="portada">
+  <div class="portada-izq">
+    <span class="tag-ext">🤝 Para Aliados, Empresas y Comunidad · PEI 2021</span>
+    <h1>UNIMINUTO en el Urabá:<br><em>más que una universidad,</em><br>un socio estratégico</h1>
+    <p>Conocé el Proyecto Educativo Institucional de UNIMINUTO y descubrí cómo tu organización puede ser parte de la transformación educativa y social de la región. Este documento es el puente entre nuestra misión y tu propósito.</p>
+  </div>
+  <div class="portada-derecha">
+    <div class="misión-box">
+      <p class="label">Misión institucional</p>
+      <p>"Ofrecer educación superior de alta calidad y pertinente, con opción preferencial para quienes no tienen oportunidades de acceder a ella, a través de un modelo innovador, integral y flexible."</p>
+      <p class="firma">— PEI UNIMINUTO 2021</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA DE VALOR -->
+<section class="propuesta">
+  <div class="propuesta-inner">
+    <p class="label-seccion">¿Qué hace UNIMINUTO diferente?</p>
+    <h2>Lo que nos distingue en el Urabá</h2>
+    <p class="intro">UNIMINUTO no es solo una institución que dicta clases. Es un agente de desarrollo territorial que articula educación, comunidad, empresa y gobierno bajo el principio del bien común.</p>
+    <div class="valor-grid">
+      <div class="valor-item">
+        <h4>🎯 Enfoque territorial</h4>
+        <p>Nuestros programas responden a las realidades y necesidades productivas del Urabá antioqueño. No importamos modelos: los cocreamos con la región.</p>
+      </div>
+      <div class="valor-item">
+        <h4>🧑‍🎓 Opción preferencial</h4>
+        <p>Formamos a quienes más lo necesitan: jóvenes de comunidades rurales, personas mayores que no pudieron estudiar, trabajadores que buscan crecer. Educación de calidad al alcance de todos.</p>
+      </div>
+      <div class="valor-item">
+        <h4>🔗 Modelo de alianzas</h4>
+        <p>Operamos bajo el modelo de quíntuple hélice: universidad, empresa, gobierno, sociedad civil y medio ambiente trabajan juntos para generar innovación que sirva a la gente.</p>
+      </div>
+      <div class="valor-item">
+        <h4>🌱 Impacto medible</h4>
+        <p>Nuestros egresados generan cambios en sus familias, comunidades y territorios. Trabajamos alineados con los Objetivos de Desarrollo Sostenible para el 2030.</p>
+      </div>
+      <div class="valor-item">
+        <h4>🔄 Cadenas de formación</h4>
+        <p>Desde la articulación con el colegio hasta el posgrado. Apoyamos el aprendizaje a lo largo de toda la vida, con rutas flexibles que se adaptan al contexto de cada persona.</p>
+      </div>
+      <div class="valor-item">
+        <h4>💻 Innovación pedagógica</h4>
+        <p>Aprendizaje híbrido, digital y experiencial. Nuestros estudiantes aprenden haciendo en contextos reales, lo que los convierte en profesionales más preparados para el mundo de hoy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO ALIARSE -->
+<section class="como-aliarse">
+  <p class="label-seccion" style="color:var(--naranja);">¿Con quién se puede aliar UNIMINUTO?</p>
+  <h2>Explorá tu tipo de alianza</h2>
+  <p class="intro">El PEI reconoce múltiples tipos de aliados. Seleccioná el que mejor describe a tu organización y descubrí las oportunidades de colaboración:</p>
+
+  <div class="alias-tabs">
+    <button class="alias-tab activo" onclick="cambiarAlias(this, 'empresa')">🏭 Empresas</button>
+    <button class="alias-tab" onclick="cambiarAlias(this, 'gobierno')">🏛️ Gobierno local</button>
+    <button class="alias-tab" onclick="cambiarAlias(this, 'osc')">🌿 Org. sociales</button>
+    <button class="alias-tab" onclick="cambiarAlias(this, 'ies')">🎓 Otras IES</button>
+    <button class="alias-tab" onclick="cambiarAlias(this, 'comunidad')">👥 Comunidad</button>
+  </div>
+
+  <div class="alias-panel activo" id="a-empresa">
+    <div class="alias-card">
+      <p class="num">01</p>
+      <h4>Prácticas profesionales</h4>
+      <p>Recibirás estudiantes motivados y preparados en tus instalaciones, con la supervisión académica de UNIMINUTO. Una inversión que forma el talento que tu empresa necesita.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">02</p>
+      <h4>Proyectos de innovación aplicada</h4>
+      <p>Tus retos empresariales convertidos en proyectos de investigación y proyección social. Soluciones reales desarrolladas por estudiantes y docentes especializados.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">03</p>
+      <h4>Educación continua para tu equipo</h4>
+      <p>Programas de formación a la medida para los colaboradores de tu empresa, alineados con las necesidades productivas del Urabá.</p>
+    </div>
+  </div>
+
+  <div class="alias-panel" id="a-gobierno">
+    <div class="alias-card">
+      <p class="num">01</p>
+      <h4>Investigación para políticas públicas</h4>
+      <p>Diagnósticos, estudios y propuestas construidas desde la academia para informar decisiones de gobierno que impacten positivamente al Urabá.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">02</p>
+      <h4>Articulación con educación media</h4>
+      <p>Acompañamiento a estudiantes de bachillerato para garantizar su acceso a la educación superior. Ruta directa de los colegios a la universidad.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">03</p>
+      <h4>Construcción colectiva de territorio</h4>
+      <p>Participación en espacios de planeación y desarrollo regional, aportando conocimiento académico a la visión de futuro del municipio.</p>
+    </div>
+  </div>
+
+  <div class="alias-panel" id="a-osc">
+    <div class="alias-card">
+      <p class="num">01</p>
+      <h4>Proyección social compartida</h4>
+      <p>Las organizaciones sociales son nuestros socios naturales. Juntos podemos diseñar proyectos de intervención comunitaria con rigor académico y impacto real.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">02</p>
+      <h4>Voluntariado estudiantil</h4>
+      <p>Nuestros estudiantes participan activamente en proyectos comunitarios como parte de su formación. Tu organización puede ser el escenario de ese aprendizaje.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">03</p>
+      <h4>Diálogo de saberes</h4>
+      <p>Valoramos el conocimiento comunitario y tradicional. La academia aprende de la comunidad, no solo al revés. Creamos juntos nuevo conocimiento situado.</p>
+    </div>
+  </div>
+
+  <div class="alias-panel" id="a-ies">
+    <div class="alias-card">
+      <p class="num">01</p>
+      <h4>Movilidad estudiantil y docente</h4>
+      <p>Intercambios, pasantías y proyectos conjuntos que enriquecen la experiencia formativa de estudiantes y docentes de ambas instituciones.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">02</p>
+      <h4>Doble titulación y coterminales</h4>
+      <p>Programas articulados que permiten a los estudiantes obtener titulaciones de dos instituciones simultáneamente, ampliando su perfil profesional.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">03</p>
+      <h4>Investigación interinstitucional</h4>
+      <p>Redes de investigación para abordar problemas complejos que requieren múltiples perspectivas y recursos académicos diversificados.</p>
+    </div>
+  </div>
+
+  <div class="alias-panel" id="a-comunidad">
+    <div class="alias-card">
+      <p class="num">01</p>
+      <h4>Acceso a la educación</h4>
+      <p>UNIMINUTO tiene opciones para personas de todos los contextos. Si en tu comunidad hay personas que quieren estudiar, somos el puente hacia la educación superior.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">02</p>
+      <h4>Programas de extensión y formación</h4>
+      <p>Talleres, cursos y actividades de educación no formal que llegan directamente a las comunidades del Urabá, sin costo o con costos accesibles.</p>
+    </div>
+    <div class="alias-card">
+      <p class="num">03</p>
+      <h4>Tu voz en nuestra universidad</h4>
+      <p>Las comunidades son parte de nuestra comunidad educativa. Sus necesidades orientan nuestros programas, nuestras investigaciones y nuestro impacto territorial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODELOS DE COLABORACIÓN -->
+<section class="modelos">
+  <div class="modelos-inner">
+    <p style="font-size:0.72rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#5DCAA5; margin-bottom:0.6rem;">Formas concretas de colaboración</p>
+    <h2>¿Cómo podemos trabajar juntos?</h2>
+    <p class="intro">El PEI reconoce múltiples formas de transferencia de conocimiento y cooperación. Estas son las más relevantes para aliados externos:</p>
+    <div class="modelos-list">
+      <div class="modelo-fila">
+        <div class="modelo-tipo">
+          <p class="mtype">Formación</p>
+          <h4>Educación continua y no formal</h4>
+        </div>
+        <div class="modelo-desc">Cursos, talleres y programas de capacitación diseñados a la medida de las necesidades de tu organización o comunidad. Con horarios flexibles y modalidades híbridas.</div>
+      </div>
+      <div class="modelo-fila">
+        <div class="modelo-tipo">
+          <p class="mtype">Investigación</p>
+          <h4>Consultoría y asesoría</h4>
+        </div>
+        <div class="modelo-desc">Nuestros grupos de investigación pueden acompañar diagnósticos, evaluaciones de impacto, estudios de mercado y propuestas de mejora para tu organización.</div>
+      </div>
+      <div class="modelo-fila">
+        <div class="modelo-tipo">
+          <p class="mtype">Proyección</p>
+          <h4>Proyectos de impacto social</h4>
+        </div>
+        <div class="modelo-desc">Co-diseñamos y co-ejecutamos proyectos que generan transformación real en comunidades del Urabá, combinando recursos de la universidad y del aliado.</div>
+      </div>
+      <div class="modelo-fila">
+        <div class="modelo-tipo">
+          <p class="mtype">Innovación</p>
+          <h4>Emprendimiento y spin-offs</h4>
+        </div>
+        <div class="modelo-desc">Apoyo al desarrollo de empresas de base tecnológica, social o cultural surgidas de la alianza entre la academia y el sector productivo regional.</div>
+      </div>
+      <div class="modelo-fila">
+        <div class="modelo-tipo">
+          <p class="mtype">Talento</p>
+          <h4>Prácticas y bolsa de empleo</h4>
+        </div>
+        <div class="modelo-desc">Conectamos a nuestros egresados y practicantes con organizaciones que valoran el perfil profesional integral y socialmente comprometido de UNIMINUTO.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO ALIADOS -->
+<section class="form-externo-wrap">
+  <p class="label-seccion" style="color:var(--verde);">¿Listo para conectar?</p>
+  <h2>Cuéntanos sobre tu organización</h2>
+  <p class="intro">Completá este formulario y la Dirección Académica de UNIMINUTO Urabá te contactará para explorar oportunidades de colaboración. También podés enviarnos tus preguntas o inquietudes sobre el PEI.</p>
+
+  <div class="form-ext">
+    <form onsubmit="enviarExt(event)">
+      <div class="form-3col">
+        <div class="fg">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Tu nombre" required>
+        </div>
+        <div class="fg">
+          <label>Cargo o rol</label>
+          <input type="text" placeholder="Ej: Gerente, Presidente, Coordinador" required>
+        </div>
+        <div class="fg">
+          <label>Organización</label>
+          <input type="text" placeholder="Nombre de tu empresa, entidad u org." required>
+        </div>
+      </div>
+      <div class="form-2col">
+        <div class="fg">
+          <label>Tipo de organización</label>
+          <select required>
+            <option value="">Seleccioná...</option>
+            <option>Empresa privada</option>
+            <option>Entidad pública / Alcaldía</option>
+            <option>Organización social / ONG</option>
+            <option>Institución educativa</option>
+            <option>Comunidad organizada</option>
+            <option>Cooperativa o empresa solidaria</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Municipio del Urabá</label>
+          <select required>
+            <option value="">Seleccioná...</option>
+            <option>Apartadó</option>
+            <option>Turbo</option>
+            <option>Carepa</option>
+            <option>Chigorodó</option>
+            <option>Mutatá</option>
+            <option>Arboletes</option>
+            <option>San Juan de Urabá</option>
+            <option>Necoclí</option>
+            <option>Otro municipio</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-2col">
+        <div class="fg">
+          <label>Teléfono o WhatsApp</label>
+          <input type="tel" placeholder="Tu número de contacto">
+        </div>
+        <div class="fg">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="tu@organizacion.com" required>
+        </div>
+      </div>
+
+      <div class="intereses">
+        <label>¿Qué tipo de colaboración te interesa? (podés seleccionar varias)</label>
+        <div class="intereses-grid" id="intereses-grid">
+          <span class="interes-chip" onclick="toggleInteres(this)">Prácticas estudiantiles</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Proyectos de investigación</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Formación continua</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Vinculación laboral de egresados</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Proyectos comunitarios</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Consultoría académica</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Eventos y congresos</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Cooperación internacional</span>
+          <span class="interes-chip" onclick="toggleInteres(this)">Otro tipo</span>
+        </div>
+      </div>
+
+      <div class="fg" style="margin-bottom:1rem; margin-top:0.5rem;">
+        <label>Mensaje, pregunta o propuesta</label>
+        <textarea placeholder="Contanos sobre tu organización, tu visión para el Urabá, y cómo imaginás que podríamos trabajar juntos..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-aliado">Iniciar conversación →</button>
+    </form>
+    <div class="exito-ext" id="exito-ext">
+      ✅ ¡Mensaje recibido! La Dirección Académica de UNIMINUTO Urabá revisará tu propuesta y se pondrá en contacto contigo en los próximos días hábiles. ¡Gracias por creer en la educación como motor de transformación!
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>📚 <strong>PEI UNIMINUTO 2021</strong> — Entregable para Aliados y Comunidad · UNIMINUTO Urabá Antioqueño</p>
+  <p style="margin-top:0.4rem;">Educación de calidad al alcance de todos · Vigilada MinEducación</p>
+</footer>
+
+<script>
+  function cambiarAlias(btn, id) {
+    document.querySelectorAll('.alias-tab').forEach(function(t) { t.classList.remove('activo'); });
+    document.querySelectorAll('.alias-panel').forEach(function(p) { p.classList.remove('activo'); });
+    btn.classList.add('activo');
+    document.getElementById('a-' + id).classList.add('activo');
+  }
+
+  function toggleInteres(chip) {
+    chip.classList.toggle('sel');
+  }
+
+  function enviarExt(e) {
+    e.preventDefault();
+    document.getElementById('exito-ext').style.display = 'block';
+    e.target.style.opacity = '0.4';
+    e.target.style.pointerEvents = 'none';
+    setTimeout(function() {
+      document.getElementById('exito-ext').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+</script>
+</body>
+</html>

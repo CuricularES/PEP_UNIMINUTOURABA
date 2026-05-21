@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEI UNIMINUTO — Para Docentes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #0F2D4A;
+    --azul-medio: #1E4D7B;
+    --azul-claro: #E6F1FB;
+    --naranja: #E8590C;
+    --naranja-claro: #FFF4EF;
+    --verde: #0F6E56;
+    --verde-claro: #E1F5EE;
+    --amarillo: #F59E0B;
+    --amarillo-claro: #FAEEDA;
+    --gris: #F8F7F4;
+    --gris-borde: #E5E3DE;
+    --texto: #1A1A1A;
+    --texto-suave: #5A5A5A;
+    --rojo-claro: #FCEBEB;
+    --rojo: #A32D2D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #fff;
+    color: var(--texto);
+    line-height: 1.7;
+  }
+
+  /* HEADER EDITORIAL */
+  .header {
+    background: var(--azul);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 420px;
+  }
+
+  @media (max-width: 700px) {
+    .header { grid-template-columns: 1fr; }
+    .header-img { display: none; }
+  }
+
+  .header-texto {
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(245,158,11,0.2);
+    color: #F59E0B;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 4px;
+    border-left: 3px solid #F59E0B;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+
+  .header-texto h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .header-texto h1 em {
+    font-style: italic;
+    color: #F59E0B;
+  }
+
+  .header-texto p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    max-width: 420px;
+    line-height: 1.7;
+  }
+
+  .header-img {
+    background: var(--azul-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-img::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 40px solid rgba(232,89,12,0.15);
+    top: -50px; right: -50px;
+  }
+
+  .header-img-inner {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .big-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.1);
+    line-height: 1;
+    display: block;
+  }
+
+  .header-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  .stat-item {
+    text-align: left;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--naranja);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* CONTENIDO */
+  .contenido {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--naranja);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .bajada {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    margin-bottom: 2rem;
+    max-width: 680px;
+  }
+
+  /* TABS DE ROLES DOCENTES */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--gris-borde);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--texto-suave);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .tab:hover { color: var(--azul); }
+
+  .tab.activo {
+    color: var(--naranja);
+    border-bottom-color: var(--naranja);
+  }
+
+  .tab-panel {
+    display: none;
+    animation: fadeSlide 0.3s ease;
+  }
+
+  .tab-panel.activo { display: block; }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* CARDS DE RESPONSABILIDADES */
+  .resp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .resp-card {
+    border: 1px solid var(--gris-borde);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    background: var(--gris);
+  }
+
+  .resp-card .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+
+  .badge.azul { background: var(--azul-claro); color: var(--azul-medio); }
+  .badge.naranja { background: var(--naranja-claro); color: var(--naranja); }
+  .badge.verde { background: var(--verde-claro); color: var(--verde); }
+  .badge.amarillo { background: var(--amarillo-claro); color: #854F0B; }
+
+  .resp-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 0.6rem;
+  }
+
+  .resp-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .resp-card li {
+    font-size: 0.88rem;
+    color: var(--texto-suave);
+    padding-left: 1.1rem;
+    position: relative;
+  }
+
+  .resp-card li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--naranja);
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+
+  /* CHECKLIST AUTOEVALUACIÓN */
+  .checklist-wrap {
+    background: var(--azul);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .checklist-wrap > h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+
+  .checklist-wrap > p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.5rem;
+  }
+
+  .checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.6rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .check-item:hover { background: rgba(255,255,255,0.1); }
+  .check-item.marcado { background: rgba(15,110,86,0.25); border-color: rgba(61,206,170,0.3); }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+    color: transparent;
+  }
+
+  .check-item.marcado .check-box {
+    background: #3DCEAA;
+    border-color: #3DCEAA;
+    color: var(--azul);
+  }
+
+  .check-texto {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+
+  .check-item.marcado .check-texto { color: #3DCEAA; }
+
+  .check-progreso {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progreso-barra {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progreso-fill {
+    height: 100%;
+    background: #3DCEAA;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .progreso-texto {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* ACORDEON DE CRITERIOS CURRICULARES */
+  .acordeon {
+    border: 1px solid var(--gris-borde);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+
+  .acord-item {
+    border-bottom: 1px solid var(--gris-borde);
+  }
+
+  .acord-item:last-child { border-bottom: none; }
+
+  .acord-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    background: #fff;
+    transition: background 0.2s;
+  }
+
+  .acord-titulo:hover { background: var(--gris); }
+
+  .acord-titulo h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--azul);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .acord-flecha {
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+    transition: transform 0.25s;
+  }
+
+  .acord-item.abierto .acord-flecha { transform: rotate(180deg); }
+
+  .acord-cuerpo {
+    display: none;
+    padding: 0 1.25rem 1rem;
+    background: var(--gris);
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    line-height: 1.7;
+    border-top: 1px solid var(--gris-borde);
+  }
+
+  .acord-item.abierto .acord-cuerpo { display: block; }
+
+  /* FORMULARIO DOCENTE */
+  .form-docente {
+    background: var(--gris);
+    border: 1px solid var(--gris-borde);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .form-docente h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-docente .bajada-form {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+
+  .fgroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .fgroup label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .fgroup input,
+  .fgroup select,
+  .fgroup textarea {
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem;
+    color: var(--texto);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .fgroup input:focus,
+  .fgroup select:focus,
+  .fgroup textarea:focus { border-color: var(--azul-medio); }
+
+  .fgroup textarea { resize: vertical; min-height: 90px; }
+
+  .calificacion-wrap {
+    margin-bottom: 1rem;
+  }
+
+  .calificacion-wrap label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .estrellas {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .estrella {
+    font-size: 1.8rem;
+    cursor: pointer;
+    filter: grayscale(100%);
+    transition: filter 0.15s, transform 0.1s;
+    line-height: 1;
+  }
+
+  .estrella:hover,
+  .estrella.llena { filter: grayscale(0); }
+
+  .estrella:active { transform: scale(0.9); }
+
+  .btn-docente {
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.8rem 1.8rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-docente:hover { background: var(--azul-medio); }
+
+  .exito-docente {
+    display: none;
+    background: var(--verde-claro);
+    border: 1px solid var(--verde);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: var(--verde);
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+
+  /* SEPARADOR */
+  .linea {
+    border: none;
+    border-top: 2px solid var(--gris-borde);
+    margin: 2.5rem 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--azul);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .footer p { color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+  .footer strong { color: var(--amarillo); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-texto">
+    <span class="etiqueta">📋 Para Docentes · PEI 2021</span>
+    <h1>Tu práctica docente,<br><em>alineada con el PEI</em></h1>
+    <p>Una guía analítica del Proyecto Educativo Institucional con herramientas prácticas para que tu labor en el aula refleje la misión de UNIMINUTO en el Urabá antioqueño.</p>
+  </div>
+  <div class="header-img">
+    <div class="header-stats">
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <p class="stat-label">Funciones sustantivas</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">7</span>
+        <p class="stat-label">Criterios de innovación curricular</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">7</span>
+        <p class="stat-label">Premisas del currículo innovador</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <p class="stat-label">Pedagogías del modelo educativo</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENIDO -->
+<div class="contenido">
+
+  <p class="section-label">Tu rol en el modelo educativo</p>
+  <h2>¿Qué te pide el PEI como docente?</h2>
+  <p class="bajada">El PEI distingue tres perfiles docentes según su énfasis principal. Explorá el que más se acerca a tu labor actual — y lo que implica en términos de práctica.</p>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab activo" onclick="cambiarTab(this, 'docencia')">🎓 Docencia</button>
+    <button class="tab" onclick="cambiarTab(this, 'investigacion')">🔬 Investigación</button>
+    <button class="tab" onclick="cambiarTab(this, 'proyeccion')">🌱 Proyección Social</button>
+  </div>
+
+  <div class="tab-panel activo" id="t-docencia">
+    <p style="margin-bottom:1.5rem; font-size:0.95rem; color:var(--texto-suave);">El docente orientado a la docencia es el <strong>mediador entre el conocimiento y el estudiante</strong>, con dominio pedagógico y disciplinar. Según el PEI, se espera que:</p>
+    <div class="resp-grid">
+      <div class="resp-card">
+        <span class="badge azul">Diagnóstico</span>
+        <h4>Conocer a tus estudiantes</h4>
+        <ul>
+          <li>Identificar conocimientos previos y estilos de aprendizaje</li>
+          <li>Reconocer diversidad cultural, étnica y socioeconómica</li>
+          <li>Diseñar estrategias diferenciadas desde el primer encuentro</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <span class="badge naranja">Práctica</span>
+        <h4>Generar experiencias significativas</h4>
+        <ul>
+          <li>Integrar teoría y práctica en cada espacio académico</li>
+          <li>Usar el aprender haciendo, viviendo, sintiendo y sirviendo</li>
+          <li>Diseñar evaluaciones contextualizadas y formativas</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <span class="badge verde">Tecnología</span>
+        <h4>Cultura digital en el aula</h4>
+        <ul>
+          <li>Apropiarte de herramientas digitales emergentes</li>
+          <li>Articular entornos presenciales, híbridos y virtuales</li>
+          <li>Dominar al menos una segunda lengua</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <span class="badge amarillo">Reflexión</span>
+        <h4>Formación permanente</h4>
+        <ul>
+          <li>Sistematizar aprendizajes de tu práctica docente</li>
+          <li>Actualización disciplinar y pedagógica continua</li>
+          <li>Reconocer la evaluación como práctica formativa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="t-investigacion">
+    <p style="margin-bottom:1.5rem; font-size:0.95rem; color:var(--texto-suave);">La investigación en UNIMINUTO combina <strong>rigor científico con pertinencia territorial</strong>. El PEI la entiende como un proceso abierto, ciudadano y coconstruido con las comunidades del Urabá.</p>
+    <div class="resp-grid">
+      <div class="resp-card">
+        <span class="badge azul">Enfoque</span>
+        <h4>Ciencia abierta y ciudadana</h4>
+        <ul>
+          <li>La investigación no está encerrada en el laboratorio</li>
+          <li>Dialogar con saberes ancestrales, comunitarios y locales</li>
+          <li>Publicar y apropiar socialmente los resultados</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <span class="badge naranja">Escala</span>
+        <h4>Inter y transdisciplinariedad</h4>
+        <ul>
+          <li>Abordar problemas complejos desde múltiples disciplinas</li>
+          <li>Articular investigación formativa con semilleros estudiantiles</li>
+          <li>Pensar lo global desde el análisis regional del Urabá</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <span class="badge verde">Impacto</span>
+        <h4>Conocimiento útil para la región</h4>
+        <ul>
+          <li>Orientar proyectos a necesidades del territorio</li>
+          <li>Vincular investigación con proyección social</li>
+          <li>Medir el impacto en las comunidades, no solo en la academia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="t-proyeccion">
+    <p style="margin-bottom:1.5rem; font-size:0.95rem; color:var(--texto-suave);">La proyección social es el <strong>corazón de UNIMINUTO</strong>. Es la función que ilumina a las otras dos y las convierte en acción territorial concreta en el Urabá.</p>
+    <div class="resp-grid">
+      <div class="resp-card">
+        <span class="badge azul">Alianzas</span>
+        <h4>Red de actores territoriales</h4>
+        <ul>
+          <li>Articularte con alcaldías, empresas y organizaciones sociales</li>
+          <li>Generar sinergias con el ecosistema del Urabá</li>
+          <li>Participar en construcción de políticas públicas locales</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <span class="badge naranja">Prácticas</span>
+        <h4>Aprender sirviendo</h4>
+        <ul>
+          <li>Supervisar prácticas de responsabilidad social</li>
+          <li>Conectar cada asignatura con retos comunitarios reales</li>
+          <li>Valorar el voluntariado como experiencia formativa</li>
+        </ul>
+      </div>
+      <div class="resp-card">
+        <span class="badge verde">Transformación</span>
+        <h4>Impacto social medible</h4>
+        <ul>
+          <li>Promover emprendimiento social en el aula</li>
+          <li>Sistematizar y visibilizar el impacto comunitario</li>
+          <li>Contribuir a la superación de la pobreza en la región</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="linea">
+
+  <p class="section-label">Criterios de innovación curricular</p>
+  <h2>¿Qué hace que un currículo sea innovador según el PEI?</h2>
+  <p class="bajada">El PEI define siete criterios que deben orientar cualquier diseño curricular en UNIMINUTO. Explorá cada uno:</p>
+
+  <div class="acordeon">
+    <div class="acord-item">
+      <div class="acord-titulo" onclick="toggleAcord(this.parentElement)">
+        <h4><span>📍</span> Pertinencia</h4>
+        <span class="acord-flecha">▼</span>
+      </div>
+      <div class="acord-cuerpo">Adecuación del currículo a la identidad institucional, las vocaciones productivas del Urabá, las necesidades del mercado laboral regional y las tendencias internacionales. Un currículo pertinente en el Urabá responde a sectores como agroindustria, educación, turismo y economía del cuidado.</div>
+    </div>
+    <div class="acord-item">
+      <div class="acord-titulo" onclick="toggleAcord(this.parentElement)">
+        <h4><span>🔄</span> Flexibilidad</h4>
+        <span class="acord-flecha">▼</span>
+      </div>
+      <div class="acord-cuerpo">Tres niveles: curricular (organización abierta del conocimiento), pedagógica (metodologías diversas, evaluaciones adaptadas) y de gestión académico-administrativa (movilidad entre modalidades, reconocimiento de saberes). La flexibilidad permite que un trabajador del campo pueda estudiar sin abandonar su entorno.</div>
+    </div>
+    <div class="acord-item">
+      <div class="acord-titulo" onclick="toggleAcord(this.parentElement)">
+        <h4><span>🧩</span> Integralidad</h4>
+        <span class="acord-flecha">▼</span>
+      </div>
+      <div class="acord-cuerpo">El currículo promueve equilibradamente todas las dimensiones humanas: social, espiritual, académica, profesional y cultural. No solo forma técnicos: forma ciudadanos íntegros comprometidos con su territorio.</div>
+    </div>
+    <div class="acord-item">
+      <div class="acord-titulo" onclick="toggleAcord(this.parentElement)">
+        <h4><span>🌎</span> Internacionalización</h4>
+        <span class="acord-flecha">▼</span>
+      </div>
+      <div class="acord-cuerpo">No es solo movilidad o doble titulación. Es incorporar dimensiones globales e interculturales en el diseño de cada asignatura. El PEI busca ciudadanos globales capaces de actuar localmente con perspectiva mundial.</div>
+    </div>
+    <div class="acord-item">
+      <div class="acord-titulo" onclick="toggleAcord(this.parentElement)">
+        <h4><span>↔️</span> Transversalidad</h4>
+        <span class="acord-flecha">▼</span>
+      </div>
+      <div class="acord-cuerpo">Interrelación activa entre saberes, métodos y enfoques. Las competencias éticas, digitales, comunicativas y de ciudadanía no son asignaturas: son hilos que atraviesan todo el currículo. El docente las activa en cada curso.</div>
+    </div>
+    <div class="acord-item">
+      <div class="acord-titulo" onclick="toggleAcord(this.parentElement)">
+        <h4><span>🔗</span> Interdisciplinariedad</h4>
+        <span class="acord-flecha">▼</span>
+      </div>
+      <div class="acord-cuerpo">Fomento del diálogo entre disciplinas para abordar fenómenos complejos. En el Urabá, fenómenos como la violencia, la migración o la soberanía alimentaria requieren miradas desde múltiples campos del conocimiento simultáneamente.</div>
+    </div>
+    <div class="acord-item">
+      <div class="acord-titulo" onclick="toggleAcord(this.parentElement)">
+        <h4><span>🔁</span> Movilidad entre modalidades</h4>
+        <span class="acord-flecha">▼</span>
+      </div>
+      <div class="acord-cuerpo">Los estudiantes pueden transitar entre modalidades presencial, virtual e híbrida sin perder su trayectoria formativa. Esto es fundamental en el Urabá, donde la conectividad y la geografía imponen retos logísticos reales.</div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST AUTOEVALUACIÓN -->
+  <div class="checklist-wrap">
+    <h3>✅ Autoevaluación: ¿Tu práctica está alineada con el PEI?</h3>
+    <p>Marcá las prácticas que ya incorporás en tu labor docente. Esto es para tu reflexión personal, no para evaluación.</p>
+
+    <div class="checklist-items">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Diseño experiencias de aprendizaje que conectan la teoría con situaciones reales del Urabá</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Incorporo al menos un componente digital o tecnológico en mis asignaturas</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Evalúo de manera formativa y contextualizada, no solo con exámenes escritos</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Promuevo que los estudiantes trabajen con comunidades o actores externos en al menos un proyecto semestral</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Incorporo perspectivas de otros campos del saber en mis cursos (interdisciplinariedad)</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Reconozco los saberes previos y experiencias de vida de mis estudiantes como punto de partida</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Me actualizo pedagógicamente al menos una vez por semestre (cursos, lecturas, comunidades docentes)</span>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <span class="check-texto">Reflexiono sistemáticamente sobre mi práctica y busco mejorarla</span>
+      </div>
+    </div>
+
+    <div class="check-progreso">
+      <div class="progreso-barra">
+        <div class="progreso-fill" id="prog-fill"></div>
+      </div>
+      <span class="progreso-texto" id="prog-texto">0/8</span>
+    </div>
+  </div>
+
+  <!-- FORMULARIO DOCENTE -->
+  <div class="form-docente">
+    <h3>📣 Comparte tu voz con la Dirección Académica</h3>
+    <p class="bajada-form">Tus observaciones sobre el PEI, el currículo y los programas son esenciales para mejorar la calidad educativa en el Urabá. Este espacio es confidencial y está diseñado para recibir tu retroalimentación profesional.</p>
+
+    <form onsubmit="enviarDoc(event)">
+      <div class="form-grid">
+        <div class="fgroup">
+          <label>Nombre (opcional)</label>
+          <input type="text" placeholder="Tu nombre o iniciales">
+        </div>
+        <div class="fgroup">
+          <label>Programa donde enseñas</label>
+          <select required>
+            <option value="">Seleccioná...</option>
+            <option>Licenciatura en Matemáticas</option>
+            <option>Licenciatura en Inglés</option>
+            <option>Licenciatura en Educación Infantil</option>
+            <option>Licenciatura en Ciencias Sociales</option>
+            <option>Otro programa</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="fgroup">
+          <label>Tipo de aporte</label>
+          <select required>
+            <option value="">¿Sobre qué querés opinar?</option>
+            <option>Contenidos del PEI</option>
+            <option>Diseño curricular del programa</option>
+            <option>Condiciones para la docencia</option>
+            <option>Innovación pedagógica</option>
+            <option>Proyección social y alianzas</option>
+            <option>Queja o inconformidad</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label>Correo para respuesta (opcional)</label>
+          <input type="email" placeholder="tu.correo@uniminuto.edu">
+        </div>
+      </div>
+
+      <div class="calificacion-wrap">
+        <label>¿Qué tan bien conocías el PEI antes de este documento?</label>
+        <div class="estrellas" id="estrellas">
+          <span class="estrella" onclick="calificar(1)">⭐</span>
+          <span class="estrella" onclick="calificar(2)">⭐</span>
+          <span class="estrella" onclick="calificar(3)">⭐</span>
+          <span class="estrella" onclick="calificar(4)">⭐</span>
+          <span class="estrella" onclick="calificar(5)">⭐</span>
+        </div>
+      </div>
+
+      <div class="fgroup" style="margin-bottom:1rem;">
+        <label>Tu observación, propuesta o pregunta</label>
+        <textarea placeholder="Escribí con la misma libertad académica que le pedimos a nuestros estudiantes..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-docente">Enviar aporte académico →</button>
+    </form>
+    <div class="exito-docente" id="exito-doc">
+      ✅ Aporte recibido. La Dirección Académica procesará tu retroalimentación. Gracias por contribuir a la mejora continua.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>📚 <strong>PEI UNIMINUTO 2021</strong> — Entregable para Docentes · UNIMINUTO Urabá Antioqueño</p>
+  <p style="margin-top:0.4rem;">Dirección de Programas de Licenciatura · Construcción colectiva de la calidad educativa</p>
+</footer>
+
+<script>
+  function cambiarTab(btn, id) {
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('activo'); });
+    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('activo'); });
+    btn.classList.add('activo');
+    document.getElementById('t-' + id).classList.add('activo');
+  }
+
+  function toggleAcord(item) {
+    var estaAbierto = item.classList.contains('abierto');
+    document.querySelectorAll('.acord-item').forEach(function(i) { i.classList.remove('abierto'); });
+    if (!estaAbierto) item.classList.add('abierto');
+  }
+
+  var totalChecks = 0;
+  function toggleCheck(item) {
+    item.classList.toggle('marcado');
+    totalChecks = document.querySelectorAll('.check-item.marcado').length;
+    var total = document.querySelectorAll('.check-item').length;
+    var pct = Math.round((totalChecks / total) * 100);
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-texto').textContent = totalChecks + '/' + total;
+  }
+
+  var calificacionVal = 0;
+  function calificar(n) {
+    calificacionVal = n;
+    var estrellas = document.querySelectorAll('.estrella');
+    estrellas.forEach(function(e, i) {
+      if (i < n) e.classList.add('llena');
+      else e.classList.remove('llena');
+    });
+  }
+
+  function enviarDoc(e) {
+    e.preventDefault();
+    document.getElementById('exito-doc').style.display = 'block';
+    e.target.style.opacity = '0.4';
+    e.target.style.pointerEvents = 'none';
+    setTimeout(function() {
+      document.getElementById('exito-doc').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+</script>
+</body>
+</html>

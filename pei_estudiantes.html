@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEI UNIMINUTO — Para Estudiantes</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --naranja: #E8590C;
+    --naranja-claro: #FFF4EF;
+    --naranja-medio: #F97316;
+    --amarillo: #F59E0B;
+    --azul-oscuro: #0F2D4A;
+    --azul-medio: #1E4D7B;
+    --verde: #0F6E56;
+    --verde-claro: #E1F5EE;
+    --gris: #F8F7F4;
+    --gris-borde: #E5E3DE;
+    --texto: #1A1A1A;
+    --texto-suave: #5A5A5A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--azul-oscuro);
+    color: var(--texto);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-medio) 60%, #2A6496 100%);
+    padding: 3rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 2px solid rgba(232,89,12,0.2);
+    top: -150px; right: -150px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 2px solid rgba(245,158,11,0.15);
+    bottom: -80px; left: -80px;
+  }
+
+  .tag-pill {
+    display: inline-block;
+    background: rgba(232,89,12,0.25);
+    color: #FFA07A;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(232,89,12,0.3);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 span {
+    color: var(--naranja-medio);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  /* CONTENIDO PRINCIPAL */
+  .main {
+    background: #fff;
+    border-radius: 2rem 2rem 0 0;
+    margin-top: -2rem;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .seccion-titulo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    margin-bottom: 0.5rem;
+  }
+
+  .seccion-bajada {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  /* FRASE CLAVE */
+  .frase-clave {
+    background: var(--azul-oscuro);
+    border-radius: 1.2rem;
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .frase-clave::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Syne', sans-serif;
+    font-size: 10rem;
+    color: rgba(232,89,12,0.15);
+    top: -2rem;
+    left: 1rem;
+    line-height: 1;
+  }
+
+  .frase-clave p {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    position: relative;
+  }
+
+  .frase-clave p em {
+    color: var(--naranja-medio);
+    font-style: normal;
+  }
+
+  /* PILARES - QUIZ */
+  .pilares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .pilar-card {
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    background: var(--gris);
+  }
+
+  .pilar-card:hover, .pilar-card.activo {
+    border-color: var(--naranja);
+    background: var(--naranja-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232,89,12,0.12);
+  }
+
+  .pilar-card .icono {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .pilar-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    margin-bottom: 0.4rem;
+  }
+
+  .pilar-card p {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    line-height: 1.6;
+  }
+
+  .pilar-detalle {
+    display: none;
+    background: #fff;
+    border: 1.5px solid var(--naranja);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    margin: 1rem 0 2rem;
+    animation: slideDown 0.3s ease;
+  }
+
+  .pilar-detalle.visible {
+    display: block;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pilar-detalle h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--naranja);
+    margin-bottom: 0.75rem;
+  }
+
+  .pilar-detalle ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pilar-detalle li {
+    font-size: 0.95rem;
+    color: var(--texto);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .pilar-detalle li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--naranja);
+    font-weight: 700;
+  }
+
+  /* QUIZ INTERACTIVO */
+  .quiz-wrapper {
+    background: var(--azul-oscuro);
+    border-radius: 1.2rem;
+    padding: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .quiz-wrapper h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .quiz-wrapper .bajada {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 1.5rem;
+  }
+
+  .quiz-pregunta {
+    display: none;
+  }
+
+  .quiz-pregunta.activa {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  .quiz-texto {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 1.2rem;
+    line-height: 1.65;
+  }
+
+  .quiz-opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .quiz-opcion {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0.75rem;
+    padding: 0.9rem 1.2rem;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .quiz-opcion:hover {
+    background: rgba(232,89,12,0.2);
+    border-color: var(--naranja);
+    color: #fff;
+  }
+
+  .quiz-opcion.correcta {
+    background: rgba(15,110,86,0.3);
+    border-color: #3DCEAA;
+    color: #3DCEAA;
+  }
+
+  .quiz-opcion.incorrecta {
+    background: rgba(226,75,74,0.25);
+    border-color: #F09595;
+    color: #F09595;
+  }
+
+  .quiz-resultado {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    display: none;
+    line-height: 1.6;
+  }
+
+  .quiz-resultado.show { display: block; }
+  .quiz-resultado.ok { background: rgba(15,110,86,0.2); color: #3DCEAA; border: 1px solid rgba(61,206,170,0.3); }
+  .quiz-resultado.mal { background: rgba(226,75,74,0.15); color: #F09595; border: 1px solid rgba(240,149,149,0.3); }
+
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+
+  .quiz-progress {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .btn-quiz {
+    background: var(--naranja);
+    color: #fff;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.65rem 1.4rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-quiz:hover { background: #D44D08; }
+  .btn-quiz:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* FORMULARIO DUDAS */
+  .form-section {
+    background: var(--naranja-claro);
+    border: 1.5px solid rgba(232,89,12,0.2);
+    border-radius: 1.2rem;
+    padding: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .form-section h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    margin-bottom: 0.4rem;
+  }
+
+  .form-section .bajada {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border: 1.5px solid rgba(232,89,12,0.25);
+    border-radius: 0.6rem;
+    padding: 0.7rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--texto);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--naranja);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .btn-enviar {
+    background: var(--azul-oscuro);
+    color: #fff;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.85rem 2rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-enviar:hover { background: var(--azul-medio); }
+
+  .exito-msg {
+    display: none;
+    background: var(--verde-claro);
+    border: 1.5px solid #0F6E56;
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    color: var(--verde);
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+
+  /* VALORES CHIP */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .chip {
+    background: var(--azul-oscuro);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  .chip.naranja { background: var(--naranja); }
+  .chip.verde { background: var(--verde); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--azul-oscuro);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .footer p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+  }
+
+  .footer strong { color: var(--naranja-medio); }
+
+  /* Separador */
+  .sep {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gris-borde), transparent);
+    margin: 2.5rem 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="tag-pill">📘 Para Estudiantes — UNIMINUTO Urabá</span>
+  <h1>El PEI en tu idioma<br><span>¿Por qué importa lo que aprendes?</span></h1>
+  <p class="hero-sub">El Proyecto Educativo Institucional es la brújula que guía todo lo que vivís en la universidad. Explorá, preguntá y hacé que tu voz cuente.</p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <h2 class="seccion-titulo">¿Qué es el PEI y para qué te sirve?</h2>
+  <p class="seccion-bajada">El Proyecto Educativo Institucional (PEI) de UNIMINUTO es el documento que define cómo aprendés, por qué aprendés así, y hacia dónde va tu formación. No es un texto burocrático: es la promesa que la universidad te hace.</p>
+
+  <div class="frase-clave">
+    <p>Aprender <em>haciendo, viviendo, sintiendo y sirviendo</em> — así define UNIMINUTO su sello educativo. Tu educación conecta teoría con vida real desde el primer día.</p>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 class="seccion-titulo">Los 3 pilares de tu formación</h2>
+  <p class="seccion-bajada">Todo lo que vivís en UNIMINUTO gira alrededor de tres ejes. Tocá cada uno para descubrir qué significa en la práctica.</p>
+
+  <div class="pilares-grid">
+    <div class="pilar-card" onclick="togglePilar(this, 'p1')">
+      <span class="icono">🧠</span>
+      <h3>Desarrollo Humano</h3>
+      <p>Formarte como persona íntegra, con proyecto de vida propio.</p>
+    </div>
+    <div class="pilar-card" onclick="togglePilar(this, 'p2')">
+      <span class="icono">🤝</span>
+      <h3>Responsabilidad Social</h3>
+      <p>Comprometerte con tu comunidad y el entorno donde vivís.</p>
+    </div>
+    <div class="pilar-card" onclick="togglePilar(this, 'p3')">
+      <span class="icono">🎯</span>
+      <h3>Competencias Profesionales</h3>
+      <p>Desarrollar habilidades reales para el mundo laboral.</p>
+    </div>
+  </div>
+
+  <div id="p1" class="pilar-detalle">
+    <h4>🧠 ¿Qué significa Desarrollo Humano en tu carrera?</h4>
+    <ul>
+      <li>Construís tu proyecto de vida desde el primer semestre</li>
+      <li>Desarrollás autonomía y habilidades socioemocionales</li>
+      <li>La espiritualidad y la ética son parte de tu currículo</li>
+      <li>Recibís acompañamiento personalizado de bienestar estudiantil</li>
+      <li>Aprendes a aprender a lo largo de toda la vida</li>
+    </ul>
+  </div>
+
+  <div id="p2" class="pilar-detalle">
+    <h4>🤝 ¿Qué significa Responsabilidad Social en tu carrera?</h4>
+    <ul>
+      <li>Hacés prácticas de responsabilidad social en comunidades reales del Urabá</li>
+      <li>Participás en proyectos de impacto territorial</li>
+      <li>Conectás tu disciplina con problemas sociales concretos</li>
+      <li>Aprendes desde el Urabá para transformar el Urabá</li>
+      <li>Colaborás con empresas, alcaldías y organizaciones sociales</li>
+    </ul>
+  </div>
+
+  <div id="p3" class="pilar-detalle">
+    <h4>🎯 ¿Qué significa Competencias Profesionales en tu carrera?</h4>
+    <ul>
+      <li>Tu plan de estudios combina teoría con práctica permanente</li>
+      <li>Desarrollás habilidades digitales y tecnológicas actualizadas</li>
+      <li>Podés homologar experiencias y conocimientos previos</li>
+      <li>Transitás entre niveles: técnico, tecnólogo, profesional, posgrado</li>
+      <li>Te preparás para emprender o emplearte con perfil competitivo</li>
+    </ul>
+  </div>
+
+  <div class="sep"></div>
+
+  <h2 class="seccion-titulo">Lo que UNIMINUTO te promete</h2>
+  <p class="seccion-bajada">Estos son los compromisos concretos de la institución hacia vos como estudiante:</p>
+
+  <div class="chips">
+    <span class="chip naranja">Educación de alta calidad</span>
+    <span class="chip">Opción preferencial para quienes más lo necesitan</span>
+    <span class="chip verde">Modelo flexible e innovador</span>
+    <span class="chip naranja">Acompañamiento integral</span>
+    <span class="chip">Vinculación con el territorio</span>
+    <span class="chip verde">Cadenas de formación</span>
+    <span class="chip">Reconocimiento de saberes previos</span>
+    <span class="chip naranja">Emprendimiento y empleabilidad</span>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-wrapper">
+    <h3>🧩 ¿Cuánto sabés sobre tu PEI?</h3>
+    <p class="bajada">Un pequeño quiz para poner a prueba lo que aprendiste. Sin presión — cada respuesta tiene su explicación.</p>
+
+    <div class="quiz-pregunta activa" id="q0">
+      <p class="quiz-texto">¿Cuál es el lema pedagógico central de UNIMINUTO que resume su forma de enseñar?</p>
+      <div class="quiz-opciones">
+        <button class="quiz-opcion" onclick="responder(this, false, 0, 'La excelencia es un hábito que se aprende en el aula.')">La excelencia es un hábito que se aprende en el aula.</button>
+        <button class="quiz-opcion" onclick="responder(this, true, 0, '¡Exacto! Este lema refleja el aprendizaje experiencial: la práctica, la emoción y el servicio son tan importantes como la teoría.')">Aprender haciendo, viviendo, sintiendo y sirviendo.</button>
+        <button class="quiz-opcion" onclick="responder(this, false, 0, 'No. La tecnología es un medio, no el fin. El PEI pone a la persona en el centro.')">La tecnología es el futuro de la educación.</button>
+      </div>
+      <div class="quiz-resultado" id="r0"></div>
+      <div class="quiz-nav">
+        <span class="quiz-progress" id="qp0">Pregunta 1 de 3</span>
+        <button class="btn-quiz" id="qnext0" onclick="irPregunta(1)" disabled>Siguiente →</button>
+      </div>
+    </div>
+
+    <div class="quiz-pregunta" id="q1">
+      <p class="quiz-texto">Según el PEI, ¿a quiénes tiene como prioridad UNIMINUTO para acceder a la educación superior?</p>
+      <div class="quiz-opciones">
+        <button class="quiz-opcion" onclick="responder(this, false, 1, 'No. UNIMINUTO busca exactamente lo contrario: incluir a quienes quedan excluidos del sistema.')">A estudiantes con los mejores resultados del ICFES.</button>
+        <button class="quiz-opcion" onclick="responder(this, false, 1, 'Parcialmente correcto, pero el PEI va más allá: incluye comunidades rurales, minorías y poblaciones marginadas.')">A jóvenes de ciudades capitales.</button>
+        <button class="quiz-opcion" onclick="responder(this, true, 1, '¡Correcto! La misión institucional tiene una opción preferencial por quienes no tienen oportunidades de acceder a la educación superior. El Urabá es un escenario clave.')">A quienes no han tenido oportunidades de acceder a la educación superior.</button>
+      </div>
+      <div class="quiz-resultado" id="r1"></div>
+      <div class="quiz-nav">
+        <span class="quiz-progress" id="qp1">Pregunta 2 de 3</span>
+        <button class="btn-quiz" id="qnext1" onclick="irPregunta(2)" disabled>Siguiente →</button>
+      </div>
+    </div>
+
+    <div class="quiz-pregunta" id="q2">
+      <p class="quiz-texto">¿Qué son las "cadenas de formación" mencionadas en el PEI?</p>
+      <div class="quiz-opciones">
+        <button class="quiz-opcion" onclick="responder(this, false, 2, 'No. Las cadenas de formación tienen que ver con trayectorias educativas, no con organizaciones estudiantiles.')">Los grupos estudiantiles que se organizan por niveles de rendimiento.</button>
+        <button class="quiz-opcion" onclick="responder(this, true, 2, '¡Muy bien! Podés empezar en un técnico, continuar como tecnólogo, graduarte como profesional y seguir con posgrados, sin perder lo aprendido en cada nivel.')">La posibilidad de transitar entre niveles formativos (técnico, tecnólogo, profesional, posgrado) sin perder lo aprendido.</button>
+        <button class="quiz-opcion" onclick="responder(this, false, 2, 'No exactamente. Los programas de bienestar son otro componente del PEI, diferente a las cadenas de formación.')">Los programas de bienestar universitario y acompañamiento psicológico.</button>
+      </div>
+      <div class="quiz-resultado" id="r2"></div>
+      <div class="quiz-nav">
+        <span class="quiz-progress" id="qp2">Pregunta 3 de 3</span>
+        <button class="btn-quiz" id="qnext2" onclick="mostrarFinal()" disabled>Ver mi resultado →</button>
+      </div>
+    </div>
+
+    <div class="quiz-pregunta" id="qfinal">
+      <div style="text-align:center; padding: 1.5rem 0;">
+        <span style="font-size:3rem;" id="emoji-final">🎉</span>
+        <p style="font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:700; color:#fff; margin:0.75rem 0 0.5rem;" id="titulo-final">¡Excelente!</p>
+        <p style="color:rgba(255,255,255,0.7); font-size:0.95rem; line-height:1.6;" id="msg-final">Respondiste correctamente todas las preguntas. ¡Conocés bien el PEI de tu institución!</p>
+        <button class="btn-quiz" style="margin:1.5rem auto 0; display:block;" onclick="reiniciarQuiz()">Volver a intentarlo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div class="form-section">
+    <h3>💬 ¿Tenés preguntas, ideas o algo que querés decir?</h3>
+    <p class="bajada">Este espacio es tuyo. Compartí tus dudas sobre el PEI, sugerencias para mejorar los programas, o cualquier mensaje para la Dirección Académica.</p>
+
+    <form onsubmit="enviarFormulario(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input type="text" placeholder="¿Cómo te llamás?" required>
+        </div>
+        <div class="form-group">
+          <label>Programa académico</label>
+          <select required>
+            <option value="">Seleccioná tu programa</option>
+            <option>Licenciatura en Matemáticas</option>
+            <option>Licenciatura en Inglés</option>
+            <option>Licenciatura en Educación Infantil</option>
+            <option>Licenciatura en Ciencias Sociales</option>
+            <option>Otro programa</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tipo de mensaje</label>
+          <select required>
+            <option value="">¿Qué querés compartir?</option>
+            <option>Duda sobre el PEI</option>
+            <option>Sugerencia académica</option>
+            <option>Queja o reclamo</option>
+            <option>Felicitación</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>¿Podemos contactarte?</label>
+          <input type="email" placeholder="Tu correo institucional (opcional)">
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:1rem;">
+        <label>Tu mensaje</label>
+        <textarea placeholder="Escribí aquí tu pregunta, comentario o idea..." required></textarea>
+      </div>
+      <button type="submit" class="btn-enviar">Enviar mi mensaje ✉️</button>
+    </form>
+    <div class="exito-msg" id="exito-msg">
+      ✅ ¡Gracias! Tu mensaje fue registrado. La Dirección Académica te responderá pronto.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>📚 <strong>PEI UNIMINUTO 2021</strong> — Entregable para Estudiantes · UNIMINUTO Urabá Antioqueño</p>
+  <p style="margin-top:0.5rem;">Experiencias transformadoras e innovación al servicio del aprendizaje</p>
+</footer>
+
+<script>
+  var correctas = 0;
+  var respondidas = [false, false, false];
+
+  function togglePilar(card, id) {
+    var detalle = document.getElementById(id);
+    var todas = document.querySelectorAll('.pilar-card');
+    var detalles = document.querySelectorAll('.pilar-detalle');
+    var estaActivo = detalle.classList.contains('visible');
+
+    todas.forEach(function(c) { c.classList.remove('activo'); });
+    detalles.forEach(function(d) { d.classList.remove('visible'); });
+
+    if (!estaActivo) {
+      card.classList.add('activo');
+      detalle.classList.add('visible');
+    }
+  }
+
+  function responder(btn, esCorrecta, idx, explicacion) {
+    if (respondidas[idx]) return;
+    respondidas[idx] = true;
+
+    var opciones = btn.parentElement.querySelectorAll('.quiz-opcion');
+    opciones.forEach(function(op) { op.disabled = true; });
+
+    var res = document.getElementById('r' + idx);
+    res.classList.add('show');
+
+    if (esCorrecta) {
+      btn.classList.add('correcta');
+      correctas++;
+      res.classList.add('ok');
+      res.textContent = '✓ ¡Correcto! ' + explicacion;
+    } else {
+      btn.classList.add('incorrecta');
+      res.classList.add('mal');
+      res.textContent = '✗ No exactamente. ' + explicacion;
+      // Highlight correcta
+      opciones.forEach(function(op) {
+        if (op.onclick && op.onclick.toString().includes('true')) {
+          op.classList.add('correcta');
+        }
+      });
+    }
+
+    document.getElementById('qnext' + idx).disabled = false;
+  }
+
+  function irPregunta(num) {
+    document.getElementById('q' + (num - 1)).classList.remove('activa');
+    document.getElementById('q' + num).classList.add('activa');
+  }
+
+  function mostrarFinal() {
+    document.getElementById('q2').classList.remove('activa');
+    document.getElementById('qfinal').classList.add('activa');
+
+    var emojiEl = document.getElementById('emoji-final');
+    var tituloEl = document.getElementById('titulo-final');
+    var msgEl = document.getElementById('msg-final');
+
+    if (correctas === 3) {
+      emojiEl.textContent = '🏆';
+      tituloEl.textContent = '¡Perfecta puntuación!';
+      msgEl.textContent = 'Respondiste 3/3 correctamente. ¡Conocés el PEI de tu institución mejor que muchos docentes!';
+    } else if (correctas === 2) {
+      emojiEl.textContent = '🎯';
+      tituloEl.textContent = '¡Muy bien!';
+      msgEl.textContent = 'Respondiste ' + correctas + '/3 correctamente. Un poco más de lectura del PEI y lo dominás completamente.';
+    } else {
+      emojiEl.textContent = '📖';
+      tituloEl.textContent = '¡Seguí explorando!';
+      msgEl.textContent = 'Respondiste ' + correctas + '/3 correctamente. El PEI tiene mucho para ofrecerte — volvé a leer los pilares y volvé a intentarlo.';
+    }
+  }
+
+  function reiniciarQuiz() {
+    correctas = 0;
+    respondidas = [false, false, false];
+
+    for (var i = 0; i < 3; i++) {
+      var q = document.getElementById('q' + i);
+      q.classList.remove('activa');
+      var opciones = q.querySelectorAll('.quiz-opcion');
+      opciones.forEach(function(op) {
+        op.disabled = false;
+        op.classList.remove('correcta', 'incorrecta');
+      });
+      var res = document.getElementById('r' + i);
+      res.classList.remove('show', 'ok', 'mal');
+      res.textContent = '';
+      document.getElementById('qnext' + i).disabled = true;
+    }
+
+    document.getElementById('qfinal').classList.remove('activa');
+    document.getElementById('q0').classList.add('activa');
+  }
+
+  function enviarFormulario(e) {
+    e.preventDefault();
+    document.getElementById('exito-msg').style.display = 'block';
+    e.target.style.opacity = '0.4';
+    e.target.style.pointerEvents = 'none';
+    setTimeout(function() {
+      document.getElementById('exito-msg').scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+</script>
+</body>
+</html>
